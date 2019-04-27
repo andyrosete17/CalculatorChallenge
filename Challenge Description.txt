@@ -1,0 +1,14 @@
+﻿Backend Challenge
+
+Tasks:
+
+1. Add a calculation history to the calculation model and implement undo redo.
+2. Make the model including the history storable. It should be reloaded on start up.
+3. Move all logic away from the frontend.
+	-Decide how to split the calculator logic into services.
+		-What services are needed, make sense?
+		-How should they be implemented in order to be extensible and maintainable.
+		-Implement those services and integrate them with the calculator.
+		-Make those services testable.
+4. Extend it the example to support trigonometric functions.
+5. Extend the example to solve a quadratic equation.
