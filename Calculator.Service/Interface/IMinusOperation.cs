@@ -1,6 +1,6 @@
 ﻿namespace Calculator.Service.Interface
 {
-    public interface IEntity
+    public interface IMinusOperation : IExecuteOperation
     {
     }
 }

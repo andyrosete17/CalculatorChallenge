@@ -1,5 +1,6 @@
 ﻿namespace Calculator.Service.Repository
 {
+    using Calculator.Common.Interface;
     using Interface;
     using System;
     using System.Collections.Generic;
@@ -32,6 +33,13 @@
             TEntity newEntity = new TEntity();
             setupProperty?.Invoke(newEntity);
             return newEntity;
+        }
+
+        public virtual TEntity Create()
+        {
+            TEntity entity = new TEntity();
+            this.dbSet.Add(entity);
+            return entity;
         }
     }
 }
