@@ -1,7 +1,9 @@
 ﻿
 namespace Calculator.Service
 {
+    using Calculator.Domain;
     using Calculator.Service.DTOs;
+    using System.Collections.Generic;
     using System.Runtime.Serialization;
     using System.ServiceModel;
 
@@ -11,10 +13,11 @@ namespace Calculator.Service
     {
 
         [OperationContract]
-        string GetData(int value);
+        CalculatorOperation GetData(int id);
+
 
         [OperationContract]
-        CompositeType GetDataUsingDataContract(CompositeType composite);
+        IEnumerable<CalculatorOperation> GetAllData();
 
         // TODO: Add your service operations here
         [OperationContract]

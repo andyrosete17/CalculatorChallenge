@@ -1,5 +1,6 @@
 ﻿namespace Calculator.Service.Interface
 {
+    using Calculator.Common.Interface;
     using System;
     using System.Collections.Generic;
 
@@ -9,5 +10,6 @@
         IEnumerable<TEntity> GetAll();
         TEntity Get(int id);
         TEntity Create(Action<TEntity> setupProperty);
+        TEntity Create();
     }
 }

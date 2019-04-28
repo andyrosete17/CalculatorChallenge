@@ -1,10 +1,17 @@
 ﻿namespace Calculator.Service.Implementations
 {
+    using Calculator.Common.Interface;
+    using Calculator.Domain;
     using Calculator.Service.Interface;
     using System;
 
     public class FactoryPatterImplementation
     {
+        ICalculatorRepository<CalculatorOperation> _repository;
+        public FactoryPatterImplementation(ICalculatorRepository<CalculatorOperation> repository)
+        {
+            this._repository = repository;
+        }
         /// <summary>
         /// Factory pattern to get operation interface
         /// </summary>
@@ -16,10 +23,10 @@
         {
             switch (operation)
             {
-                case "+": return new PlusOperation(firstOperand, secondOperand);
-                case "-": return new MinusOperation(firstOperand, secondOperand);
-                case "*": return new MultiplyOperation(firstOperand, secondOperand);
-                case "/": return new DivideOperation(firstOperand, secondOperand);
+                case "+": return new PlusOperation(firstOperand, secondOperand, this._repository);
+                case "-": return new MinusOperation(firstOperand, secondOperand, this._repository);
+                case "*": return new MultiplyOperation(firstOperand, secondOperand, this._repository);
+                case "/": return new DivideOperation(firstOperand, secondOperand, this._repository);
                 default:
                     throw new Exception("No handle error");
             }
@@ -35,9 +42,9 @@
         {
             switch (operation)
             {
-                case "sin": return new SineOperation(firstOperand);
-                case "cos": return new CosineOperation(firstOperand);
-                case "tan": return new TangentOperation(firstOperand);
+                case "sin": return new SineOperation(firstOperand, this._repository);
+                case "cos": return new CosineOperation(firstOperand, this._repository);
+                case "tan": return new TangentOperation(firstOperand, this._repository);
                 default:
                     throw new Exception("No handle error");
             }

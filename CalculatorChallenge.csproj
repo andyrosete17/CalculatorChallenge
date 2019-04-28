@@ -94,9 +94,13 @@
     <Resource Include="Challenge Description.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Calculator.Domain1\Calculator.Domain.csproj">
-      <Project>{14e24359-e596-4eac-9eb7-1490f0370b8e}</Project>
-      <Name>Calculator.Domain</Name>
+    <ProjectReference Include="..\Calculator.Common\Calculator.Common.csproj">
+      <Project>{d394feaf-a5d8-43a0-90ec-e9b5e1359fb4}</Project>
+      <Name>Calculator.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="Calculator.Service\Calculator.Service.csproj">
+      <Project>{c58a8a02-923b-4293-9ae0-584a5de3d0a4}</Project>
+      <Name>Calculator.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,11 +1,13 @@
 ﻿namespace Calculator.Service.Implementations
 {
+    using Calculator.Domain;
     using Calculator.Service.DTOs;
     using Calculator.Service.Helpers;
+    using Calculator.Service.Interface;
 
     public class CalculationServiceImplementation
     {
-        public string CalculateResult(CalculateResultRequest request)
+        public string CalculateResult(CalculateResultRequest request, ICalculatorRepository<CalculatorOperation> _repository)
         {
             var result = string.Empty;
             if (request.Operator.ValidateOperation())
@@ -14,7 +16,7 @@
             }
             else
             {
-                var factory = new FactoryPatterImplementation();
+                var factory = new FactoryPatterImplementation(_repository);
                 if (string.IsNullOrEmpty(request.SecondOperand))
                 {
                     var operation = factory.GetOperation(request.Operator, request.FirstOperand);

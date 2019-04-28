@@ -1,7 +1,12 @@
 ﻿namespace Calculator.Domain
 {
+    using Calculator.Common.Implementations;
+    using Calculator.Common.Interface;
     using System.ComponentModel.DataAnnotations;
-    public class CalculatorOperation
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    [Table("Calculator")]
+    public class CalculatorOperation : Entity, IEntity
     {
         [Key]
         public int Id { get; set; }
@@ -16,7 +21,7 @@
         public string Operation { get; set; }
 
         [StringLength(20)]
-        public string Result { get; private set; }
+        public string Result { get; set; }
 
     }
 }

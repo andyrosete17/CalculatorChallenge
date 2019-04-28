@@ -82,12 +82,12 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\CalculatorCommons.cs" />
     <Compile Include="DTOs\CalculateResultRequest.cs" />
     <Compile Include="Helpers\OperandHelper.cs" />
     <Compile Include="Implementations\CalculationServiceImplementation.cs" />
     <Compile Include="Implementations\CosineOperation.cs" />
     <Compile Include="Implementations\DivideOperation.cs" />
-    <Compile Include="Implementations\Entity.cs" />
     <Compile Include="Implementations\FactoryPatterImplementation.cs" />
     <Compile Include="Implementations\MinusOperation.cs" />
     <Compile Include="Implementations\MultiplyOperation.cs" />
@@ -97,7 +97,6 @@
     <Compile Include="Interface\ICalculatorRepository.cs" />
     <Compile Include="Interface\ICosineOperation.cs" />
     <Compile Include="Interface\IDivideOperation.cs" />
-    <Compile Include="Interface\IEntity.cs" />
     <Compile Include="Interface\IExecuteOperation.cs" />
     <Compile Include="Interface\ILocalDataContext.cs" />
     <Compile Include="Interface\IMinusOperation.cs" />
@@ -133,6 +132,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Calculator.Common\Calculator.Common.csproj">
+      <Project>{d394feaf-a5d8-43a0-90ec-e9b5e1359fb4}</Project>
+      <Name>Calculator.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Calculator.Domain1\Calculator.Domain.csproj">
       <Project>{14e24359-e596-4eac-9eb7-1490f0370b8e}</Project>
       <Name>Calculator.Domain</Name>
