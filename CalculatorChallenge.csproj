@@ -94,10 +94,6 @@
     <Resource Include="Challenge Description.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Calculator.Common\Calculator.Common.csproj">
-      <Project>{d394feaf-a5d8-43a0-90ec-e9b5e1359fb4}</Project>
-      <Name>Calculator.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="Calculator.Service\Calculator.Service.csproj">
       <Project>{c58a8a02-923b-4293-9ae0-584a5de3d0a4}</Project>
       <Name>Calculator.Service</Name>

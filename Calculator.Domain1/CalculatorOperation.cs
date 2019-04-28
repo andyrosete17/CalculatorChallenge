@@ -1,7 +1,7 @@
 ﻿namespace Calculator.Domain
 {
-    using Calculator.Common.Implementations;
-    using Calculator.Common.Interface;
+    using Calculator.Commons.Implementation;
+    using Calculator.Commons.Interface;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 

@@ -1,9 +1,6 @@
 ﻿
 namespace Calculator.Service.Helpers
 {
-    using Calculator.Common.Interface;
-    using Calculator.Domain;
-    using Calculator.Service.Interface;
     using System;
 
     public static class OperandHelper

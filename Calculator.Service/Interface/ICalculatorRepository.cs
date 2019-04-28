@@ -1,6 +1,6 @@
 ﻿namespace Calculator.Service.Interface
 {
-    using Calculator.Common.Interface;
+    using Calculator.Commons.Interface;
     using System;
     using System.Collections.Generic;
 
