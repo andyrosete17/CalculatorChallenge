@@ -7,8 +7,8 @@
     <ProjectGuid>{14E24359-E596-4EAC-9EB7-1490F0370B8E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Calculator.Domain1</RootNamespace>
-    <AssemblyName>Calculator.Domain1</AssemblyName>
+    <RootNamespace>Calculator.Domain</RootNamespace>
+    <AssemblyName>Calculator.Domain</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
