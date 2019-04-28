@@ -5,7 +5,7 @@
     using Interface;
     public class LocalDataContext : DataContext, ILocalDataContext
     {
-        //public DbSet<CalculatorOperation> Users { get; set; }
+        public DbSet<CalculatorOperation> CalculatorOperations { get; set; }
 
         DbSet<T> ILocalDataContext.GetDbSet<T>()
         {

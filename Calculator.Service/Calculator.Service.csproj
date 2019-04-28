@@ -105,9 +105,9 @@
     <Compile Include="Interface\ISineOperation.cs" />
     <Compile Include="Interface\ITangentOperation.cs" />
     <Compile Include="IOCRegistry\CalculatorServiceRegistry.cs" />
-    <Compile Include="Migrations\201904272145039_FirstMigration.cs" />
-    <Compile Include="Migrations\201904272145039_FirstMigration.Designer.cs">
-      <DependentUpon>201904272145039_FirstMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201904281728516_FirstMigration.cs" />
+    <Compile Include="Migrations\201904281728516_FirstMigration.Designer.cs">
+      <DependentUpon>201904281728516_FirstMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Entity.cs" />
@@ -142,8 +142,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201904272145039_FirstMigration.resx">
-      <DependentUpon>201904272145039_FirstMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904281728516_FirstMigration.resx">
+      <DependentUpon>201904281728516_FirstMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

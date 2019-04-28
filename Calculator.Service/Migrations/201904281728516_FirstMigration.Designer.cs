@@ -11,7 +11,7 @@ namespace Calculator.Service.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201904272145039_FirstMigration"; }
+            get { return "201904281728516_FirstMigration"; }
         }
         
         string IMigrationMetadata.Source
