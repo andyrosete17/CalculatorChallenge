@@ -50,6 +50,9 @@
     <Reference Include="System.Data.Entity.Repository, Version=2.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.Entity.Repository.2.0.0.1\lib\net45\System.Data.Entity.Repository.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -67,26 +70,53 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="Unity.Abstractions, Version=4.1.3.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.10.3\lib\net45\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container, Version=5.10.3.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.10.3\lib\net45\Unity.Container.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Service1.svc" />
+    <Content Include="CalculationService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\CalculateResultRequest.cs" />
+    <Compile Include="Helpers\OperandHelper.cs" />
+    <Compile Include="Implementations\CalculationServiceImplementation.cs" />
+    <Compile Include="Implementations\CosineOperation.cs" />
+    <Compile Include="Implementations\DivideOperation.cs" />
+    <Compile Include="Implementations\FactoryPatterImplementation.cs" />
+    <Compile Include="Implementations\MinusOperation.cs" />
+    <Compile Include="Implementations\MultiplyOperation.cs" />
+    <Compile Include="Implementations\PlusOperation.cs" />
+    <Compile Include="Implementations\SineOperation.cs" />
+    <Compile Include="Implementations\TangentOperation.cs" />
     <Compile Include="Interface\ICalculatorRepository.cs" />
+    <Compile Include="Interface\ICosineOperation.cs" />
+    <Compile Include="Interface\IDivideOperation.cs" />
     <Compile Include="Interface\IEntity.cs" />
+    <Compile Include="Interface\IExecuteOperation.cs" />
     <Compile Include="Interface\ILocalDataContext.cs" />
+    <Compile Include="Interface\IMinusOperation.cs" />
+    <Compile Include="Interface\IMultiplyOperation.cs" />
+    <Compile Include="Interface\IPlusOperation.cs" />
+    <Compile Include="Interface\ISineOperation.cs" />
+    <Compile Include="Interface\ITangentOperation.cs" />
+    <Compile Include="IOCRegistry\CalculatorServiceRegistry.cs" />
     <Compile Include="Migrations\201904272145039_FirstMigration.cs" />
     <Compile Include="Migrations\201904272145039_FirstMigration.Designer.cs">
       <DependentUpon>201904272145039_FirstMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\LocalDataContext.cs" />
     <Compile Include="Repository\CalculatorRepository.cs" />
-    <Compile Include="Service1.svc.cs">
-      <DependentUpon>Service1.svc</DependentUpon>
+    <Compile Include="CalculationService.svc.cs">
+      <DependentUpon>CalculationService.svc</DependentUpon>
     </Compile>
-    <Compile Include="IService1.cs" />
+    <Compile Include="CalculationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
