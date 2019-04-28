@@ -1,11 +1,12 @@
-﻿
-namespace Calculator.Service.Implementations
+﻿namespace Calculator.Service.Implementations
 {
+    using Calculator.Domain;
     using Calculator.Service.Helpers;
     using Calculator.Service.Interface;
 
     public class PlusOperation : IPlusOperation
     {
+        private readonly ICalculatorRepository<CalculatorOperation> repository;
         double? firstOperand, secondOperand;
         string error;
 

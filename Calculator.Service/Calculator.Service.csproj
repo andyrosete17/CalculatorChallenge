@@ -87,6 +87,7 @@
     <Compile Include="Implementations\CalculationServiceImplementation.cs" />
     <Compile Include="Implementations\CosineOperation.cs" />
     <Compile Include="Implementations\DivideOperation.cs" />
+    <Compile Include="Implementations\Entity.cs" />
     <Compile Include="Implementations\FactoryPatterImplementation.cs" />
     <Compile Include="Implementations\MinusOperation.cs" />
     <Compile Include="Implementations\MultiplyOperation.cs" />

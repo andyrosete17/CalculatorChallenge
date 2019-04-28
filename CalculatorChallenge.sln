@@ -9,6 +9,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.Domain", "Calcul
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.Service", "Calculator.Service\Calculator.Service.csproj", "{C58A8A02-923B-4293-9AE0-584A5DE3D0A4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Services", "3.Services", "{E533589F-87FC-44DC-82F8-D1334D2856EA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.Domain", "4.Domain", "{F62A5A05-FC2C-440C-9633-4C3624EACF1A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.Common", "5.Common", "{48D0751C-3207-4BF5-B39E-DB0F32B29069}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Test", "1.Test", "{7180218D-5C94-4D46-91F8-17FB57090408}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Front", "2.Front", "{96E82D52-1EFE-4D47-9746-4A96AFC1BC60}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +40,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7B8803FB-78EA-490C-923B-DCA34191629B} = {96E82D52-1EFE-4D47-9746-4A96AFC1BC60}
+		{14E24359-E596-4EAC-9EB7-1490F0370B8E} = {F62A5A05-FC2C-440C-9633-4C3624EACF1A}
+		{C58A8A02-923B-4293-9AE0-584A5DE3D0A4} = {E533589F-87FC-44DC-82F8-D1334D2856EA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7C1F259C-3765-4C69-88E9-386DC7BAC0A0}
