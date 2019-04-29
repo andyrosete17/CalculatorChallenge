@@ -23,6 +23,11 @@
             return this.dbSet;
         }
 
+        public TEntity Get(Guid id)
+        {
+            return this.dbSet.Find(id);
+        }
+
         public TEntity Get(int id)
         {
             return this.dbSet.Find(id);

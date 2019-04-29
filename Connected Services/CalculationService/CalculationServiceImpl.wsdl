@@ -15,6 +15,12 @@
   <wsdl:message name="ICalculationService_GetData_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetDataResponse" />
   </wsdl:message>
+  <wsdl:message name="ICalculationService_GetDataFromGuid_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataFromGuid" />
+  </wsdl:message>
+  <wsdl:message name="ICalculationService_GetDataFromGuid_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataFromGuidResponse" />
+  </wsdl:message>
   <wsdl:message name="ICalculationService_GetAllData_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAllData" />
   </wsdl:message>
@@ -32,6 +38,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ICalculationService/GetData" message="tns:ICalculationService_GetData_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICalculationService/GetDataResponse" message="tns:ICalculationService_GetData_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetDataFromGuid">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICalculationService/GetDataFromGuid" message="tns:ICalculationService_GetDataFromGuid_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICalculationService/GetDataFromGuidResponse" message="tns:ICalculationService_GetDataFromGuid_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetAllData">
       <wsdl:input wsaw:Action="http://tempuri.org/ICalculationService/GetAllData" message="tns:ICalculationService_GetAllData_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICalculationService/GetAllDataResponse" message="tns:ICalculationService_GetAllData_OutputMessage" />
@@ -45,6 +55,15 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetData">
       <soap:operation soapAction="http://tempuri.org/ICalculationService/GetData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataFromGuid">
+      <soap:operation soapAction="http://tempuri.org/ICalculationService/GetDataFromGuid" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

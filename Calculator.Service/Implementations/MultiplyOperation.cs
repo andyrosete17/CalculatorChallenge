@@ -21,12 +21,13 @@
             this.repository = repository;
         }
 
-        public string Execute()
+        public CalculatorOperation Execute()
         {
             var calculatorCommons = new CalculatorCommons();
+            var result = new CalculatorOperation();
 
-            var result = !string.IsNullOrEmpty(error) ? error : (this.firstOperand * this.secondOperand).ToString();
-            calculatorCommons.AddCalculatorResult(this.firstOperand, this.secondOperand, result, "*", this.repository);
+            result.Result = !string.IsNullOrEmpty(error) ? error : (this.firstOperand * this.secondOperand).ToString();
+            result = calculatorCommons.AddCalculatorResult(this.firstOperand, this.secondOperand, result.Result, "*", this.repository);
 
             return result;
         }

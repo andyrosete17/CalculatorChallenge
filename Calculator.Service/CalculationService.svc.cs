@@ -6,6 +6,7 @@
     using Calculator.Service.Interface;
     using Calculator.Service.IOCRegistry;
     using Calculator.Service.Models;
+    using System;
     using System.Collections.Generic;
     using Unity;
     using Unity.Injection;
@@ -31,12 +32,12 @@
             this.service= new CalculationServiceImplementation();
         }
 
-        public string CalculateResult(CalculateResultRequest request)
+        public CalculatorOperation CalculateResult(CalculateResultRequest request)
         {
             return this.service.CalculateResult(request, _repository);
         }
 
-        public CalculatorOperation GetData(int id)
+        public CalculatorOperation GetDataFromGuid(Guid id)
         {
             return _repository.Get(id);
         }
@@ -44,6 +45,11 @@
         public IEnumerable<CalculatorOperation> GetAllData()
         {
             return _repository.GetAll();
+        }
+
+        public CalculatorOperation GetData(int id)
+        {
+            return _repository.Get(id);
         }
     }
 }

@@ -7,12 +7,13 @@
         mc:Ignorable="d"
         Icon="{x:Null}"
         Background="Black"
-        Title="Calcualtor Challenge" 
+        Title="Calculator Challenge" 
         d:DataContext="{d:DesignInstance viewModels:CalculatorViewModel, d:IsDesignTimeCreatable=False}"
         SizeToContent="WidthAndHeight">
     <DockPanel Name="MyPanel">
         <Grid Name="MyGrid"  ShowGridLines="False" Height="287" Width="475">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -28,7 +29,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <TextBlock  Name="DisplayBox" Text="{Binding Display, Mode=TwoWay}" Background="White"  Grid.ColumnSpan="5" FontSize="24" TextAlignment="Right"></TextBlock>
+            <TextBlock  Name="DisplayBox" Text="{Binding Display, Mode=TwoWay}" Background="White"  Grid.ColumnSpan="6" FontSize="24" TextAlignment="Right"></TextBlock>
             <TextBlock  Name="ExpressionBox" Text="{Binding FullExpression, Mode=TwoWay}" Background="Gray" TextAlignment="Center" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" FontSize="18"></TextBlock>
 
             <Button Name="Button7" Command="{Binding DigitButtonPressCommand}" CommandParameter="7" Grid.Column="0" Grid.Row="2">7</Button>
@@ -61,6 +62,14 @@
             <Button Name="ButtonTan" Command="{Binding SingularOperationButtonPressCommand}" CommandParameter="tan" Background="Darkgray" Grid.Column="4" Grid.Row="4">Tan(x)</Button>
 
             <Button Name="ButtonEqual" Command="{Binding OperationButtonPressCommand}" CommandParameter="=" Background="Darkgray"  Grid.Column="4" Grid.Row="5" Margin="0,0,0,0">=</Button>
+            <Button Name="ButtonUndo" Command="{Binding OperationUndoButtonPressCommand}" Background="Darkgray"  Grid.Column="5" Grid.Row="5" Margin="0,0,0,0">Undo</Button>
+            <ListView Name ="listView" ItemsSource="{Binding Path=CalculationHistory}" FontSize="10" FontStyle="Normal" Grid.Column="5" Background="Darkgray" HorizontalAlignment="Left" Height="240" Grid.Row="1" Grid.RowSpan="4" VerticalAlignment="Top" Width="79" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="History" DisplayMemberBinding="{Binding Value}"></GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
 
         </Grid>
     </DockPanel>
