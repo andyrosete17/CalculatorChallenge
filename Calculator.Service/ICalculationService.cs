@@ -3,8 +3,8 @@ namespace Calculator.Service
 {
     using Calculator.Domain;
     using Calculator.Service.DTOs;
+    using System;
     using System.Collections.Generic;
-    using System.Runtime.Serialization;
     using System.ServiceModel;
 
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
@@ -15,9 +15,12 @@ namespace Calculator.Service
         CalculatorOperation GetData(int id);
 
         [OperationContract]
+        CalculatorOperation GetDataFromGuid(Guid id);
+
+        [OperationContract]
         IEnumerable<CalculatorOperation> GetAllData();
 
         [OperationContract]
-        string CalculateResult(CalculateResultRequest request);
+        CalculatorOperation CalculateResult(CalculateResultRequest request);
     }
 }

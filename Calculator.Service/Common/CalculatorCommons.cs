@@ -14,14 +14,17 @@
         /// <param name="result">final result</param>
         /// <param name="operation">operation</param>
         /// <param name="repository">repository</param>
-        public void AddCalculatorResult(double? firstOperand, double? secondOperand, string result, string operation, ICalculatorRepository<CalculatorOperation> repository)
+        public CalculatorOperation AddCalculatorResult(double? firstOperand, double? secondOperand, string result, string operation, ICalculatorRepository<CalculatorOperation> repository)
         {            
             var calculatorOperation = repository.Create();
             calculatorOperation.FirstOperand = firstOperand.ToString();
             calculatorOperation.SecondOperand = secondOperand.ToString();
             calculatorOperation.Operation = operation;
             calculatorOperation.Result = result;
+            calculatorOperation.CalculatorId = Guid.NewGuid();
             repository.CommitContextChanges();
+
+            return calculatorOperation;
         }
 
     }

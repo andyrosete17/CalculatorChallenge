@@ -50,6 +50,9 @@ namespace CalculatorChallenge.CalculationService {
     public partial class CalculatorOperation : CalculatorChallenge.CalculationService.Entity {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid CalculatorIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string FirstOperandField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -63,6 +66,19 @@ namespace CalculatorChallenge.CalculationService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string SecondOperandField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid CalculatorId {
+            get {
+                return this.CalculatorIdField;
+            }
+            set {
+                if ((this.CalculatorIdField.Equals(value) != true)) {
+                    this.CalculatorIdField = value;
+                    this.RaisePropertyChanged("CalculatorId");
+                }
+            }
+        }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public string FirstOperand {
@@ -140,6 +156,12 @@ namespace CalculatorChallenge.CalculationService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICalculationService/GetData", ReplyAction="http://tempuri.org/ICalculationService/GetDataResponse")]
         System.Threading.Tasks.Task<CalculatorChallenge.CalculationService.CalculatorOperation> GetDataAsync(int id);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICalculationService/GetDataFromGuid", ReplyAction="http://tempuri.org/ICalculationService/GetDataFromGuidResponse")]
+        CalculatorChallenge.CalculationService.CalculatorOperation GetDataFromGuid(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICalculationService/GetDataFromGuid", ReplyAction="http://tempuri.org/ICalculationService/GetDataFromGuidResponse")]
+        System.Threading.Tasks.Task<CalculatorChallenge.CalculationService.CalculatorOperation> GetDataFromGuidAsync(System.Guid id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICalculationService/GetAllData", ReplyAction="http://tempuri.org/ICalculationService/GetAllDataResponse")]
         CalculatorChallenge.CalculationService.CalculatorOperation[] GetAllData();
         
@@ -147,10 +169,10 @@ namespace CalculatorChallenge.CalculationService {
         System.Threading.Tasks.Task<CalculatorChallenge.CalculationService.CalculatorOperation[]> GetAllDataAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICalculationService/CalculateResult", ReplyAction="http://tempuri.org/ICalculationService/CalculateResultResponse")]
-        string CalculateResult(Calculator.Service.DTOs.CalculateResultRequest request);
+        CalculatorChallenge.CalculationService.CalculatorOperation CalculateResult(Calculator.Service.DTOs.CalculateResultRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICalculationService/CalculateResult", ReplyAction="http://tempuri.org/ICalculationService/CalculateResultResponse")]
-        System.Threading.Tasks.Task<string> CalculateResultAsync(Calculator.Service.DTOs.CalculateResultRequest request);
+        System.Threading.Tasks.Task<CalculatorChallenge.CalculationService.CalculatorOperation> CalculateResultAsync(Calculator.Service.DTOs.CalculateResultRequest request);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -188,6 +210,14 @@ namespace CalculatorChallenge.CalculationService {
             return base.Channel.GetDataAsync(id);
         }
         
+        public CalculatorChallenge.CalculationService.CalculatorOperation GetDataFromGuid(System.Guid id) {
+            return base.Channel.GetDataFromGuid(id);
+        }
+        
+        public System.Threading.Tasks.Task<CalculatorChallenge.CalculationService.CalculatorOperation> GetDataFromGuidAsync(System.Guid id) {
+            return base.Channel.GetDataFromGuidAsync(id);
+        }
+        
         public CalculatorChallenge.CalculationService.CalculatorOperation[] GetAllData() {
             return base.Channel.GetAllData();
         }
@@ -196,11 +226,11 @@ namespace CalculatorChallenge.CalculationService {
             return base.Channel.GetAllDataAsync();
         }
         
-        public string CalculateResult(Calculator.Service.DTOs.CalculateResultRequest request) {
+        public CalculatorChallenge.CalculationService.CalculatorOperation CalculateResult(Calculator.Service.DTOs.CalculateResultRequest request) {
             return base.Channel.CalculateResult(request);
         }
         
-        public System.Threading.Tasks.Task<string> CalculateResultAsync(Calculator.Service.DTOs.CalculateResultRequest request) {
+        public System.Threading.Tasks.Task<CalculatorChallenge.CalculationService.CalculatorOperation> CalculateResultAsync(Calculator.Service.DTOs.CalculateResultRequest request) {
             return base.Channel.CalculateResultAsync(request);
         }
     }

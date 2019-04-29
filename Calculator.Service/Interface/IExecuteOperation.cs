@@ -1,7 +1,9 @@
-﻿namespace Calculator.Service.Interface
+﻿using Calculator.Domain;
+
+namespace Calculator.Service.Interface
 {
     public interface IExecuteOperation
     {
-        string Execute();
+        CalculatorOperation Execute();
     }
 }

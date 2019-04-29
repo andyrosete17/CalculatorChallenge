@@ -7,12 +7,12 @@
 
     public class CalculationServiceImplementation
     {
-        public string CalculateResult(CalculateResultRequest request, ICalculatorRepository<CalculatorOperation> _repository)
+        public CalculatorOperation CalculateResult(CalculateResultRequest request, ICalculatorRepository<CalculatorOperation> _repository)
         {
-            var result = string.Empty;
+            var result = new CalculatorOperation();
             if (!request.Operator.ValidateOperation())
             {
-                result = $"Unknown operation: {request.Operator}";
+                result.Result = $"Unknown operation: {request.Operator}";
             }
             else
             {

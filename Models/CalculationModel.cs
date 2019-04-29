@@ -22,6 +22,8 @@ namespace CalculatorChallenge.Models
         public string Operation { get; set; }
 
         public string Result { get; set; }
+
+        public Guid CalculatorId { get; set; }
         #endregion
     }
 }

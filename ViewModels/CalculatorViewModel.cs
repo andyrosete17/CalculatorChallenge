@@ -1,10 +1,13 @@
-﻿using System;
-using System.Windows.Input;
+﻿using Calculator.Service.DTOs;
+using CalculatorChallenge.CalculationService;
 using CalculatorChallenge.Commands;
 using CalculatorChallenge.Models;
-using Calculator.Service;
-using Calculator.Service.DTOs;
-using CalculatorChallenge.CalculationService;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace CalculatorChallenge.ViewModels
 {
@@ -32,6 +35,8 @@ namespace CalculatorChallenge.ViewModels
             _lastOperation = string.Empty;
             _fullExpression = string.Empty;
             calculationService = new CalculationServiceClient();
+            CalculationHistory = new Dictionary<Guid, string>();
+            LoadCalculationHistory(calculationService);
         }
 
         #endregion
@@ -63,7 +68,11 @@ namespace CalculatorChallenge.ViewModels
             set => Set(ref _lastOperation, value);
         }
 
-        public string Result => _calculation.Result;
+        public string Result
+        {
+            get => _calculation.Result;
+            set => Set(ref _display, value);
+        }
 
         private string _display;
         public string Display
@@ -79,6 +88,13 @@ namespace CalculatorChallenge.ViewModels
             set => Set(ref _fullExpression, value);
         }
 
+        public Dictionary<Guid, string> _calculationHistory;
+        public Dictionary<Guid,string> CalculationHistory
+        {
+            get => _calculationHistory;
+            set => Set(ref _calculationHistory, value);
+        }       
+
         #endregion
 
         #region Methods
@@ -87,6 +103,24 @@ namespace CalculatorChallenge.ViewModels
         private static void LogExceptionInformation(Exception ex)
         {
             //TODO:
+        }
+
+        private void LoadCalculationHistory(CalculationServiceClient calculationService)
+        {
+            CalculationHistory?.Clear();
+            calculationService.GetAllData()
+                              .ToList()
+                              .ForEach(x=>
+                              {
+                                  var value = $"{x.FirstOperand}{x.Operation}{x.SecondOperand}={x.Result}";
+                                  CalculationHistory.Add(x.CalculatorId, value);
+                              });
+        }
+
+        private void LoadCalculationHistory(CalculatorOperation x)
+        {
+            var value = $"{x.FirstOperand}{x.Operation}{x.SecondOperand}={x.Result}";
+            CalculationHistory.Add(x.CalculatorId, value);
         }
 
         #endregion
@@ -161,11 +195,12 @@ namespace CalculatorChallenge.ViewModels
                         SecondOperand = SecondOperand, 
                         Operator = Operation
                     };
-                    _calculation.Result= calculationService.CalculateResult(calculationResultRequest);
+                    var calculationServiceResult = calculationService.CalculateResult(calculationResultRequest);
+                    LoadCalculationHistory(calculationServiceResult);
 
                     FullExpression = Math.Round(Convert.ToDouble(FirstOperand), 10) + " " + Operation + " "
                                     + Math.Round(Convert.ToDouble(SecondOperand), 10) + " = "
-                                    + Math.Round(Convert.ToDouble(Result), 10);
+                                    + Math.Round(Convert.ToDouble(calculationServiceResult.Result), 10);
 
                     LastOperation = operation;
                     Display = Result;
@@ -180,6 +215,8 @@ namespace CalculatorChallenge.ViewModels
             }
         }
 
+       
+
         //for sin,cos,tan
         public void OnSingularOperationButtonPress(string operation)
         {
@@ -192,10 +229,11 @@ namespace CalculatorChallenge.ViewModels
                     FirstOperand = FirstOperand,
                     Operator = Operation
                 };
-                _calculation.Result = calculationService.CalculateResult(calculationResultRequest);
+                var calculationServiceResult = calculationService.CalculateResult(calculationResultRequest);
+                LoadCalculationHistory(calculationServiceResult);
 
                 FullExpression = Operation + "(" + Math.Round(Convert.ToDouble(FirstOperand), 10) + ") = "
-                    + Math.Round(Convert.ToDouble(Result), 10);
+                    + Math.Round(Convert.ToDouble(calculationServiceResult.Result), 10);
 
                 LastOperation = "=";
                 Display = Result;
@@ -207,6 +245,29 @@ namespace CalculatorChallenge.ViewModels
                 Display = Result == string.Empty ? "Error - see event log" : Result;
                 LogExceptionInformation(ex);
             }
+        }
+         private void OnOperationUndoButtonPress(string obj)
+        {
+            var id = CalculationHistory.Last().Key;
+            var result = calculationService.GetDataFromGuid(id);
+            FirstOperand = result.FirstOperand;
+            SecondOperand = result.SecondOperand;
+            Operation = result.Operation;
+            Display = Result = result.Result;
+
+            if (string.IsNullOrEmpty(result.SecondOperand))
+            {
+                FullExpression = Operation + "(" + Math.Round(Convert.ToDouble(FirstOperand), 10) + ") = "
+                   + Math.Round(Convert.ToDouble(result.Result), 10);
+            }
+            else
+            {
+                FullExpression = Math.Round(Convert.ToDouble(FirstOperand), 10) + " " + Operation + " "
+                                        + Math.Round(Convert.ToDouble(SecondOperand), 10) + " = "
+                                        + Math.Round(Convert.ToDouble(result.Result), 10);
+            }
+
+            CalculationHistory.Remove(id);
         }
 
         #endregion
@@ -221,6 +282,11 @@ namespace CalculatorChallenge.ViewModels
 
         private DelegateCommand<string> _digitButtonPressCommand;
         public ICommand DigitButtonPressCommand => _digitButtonPressCommand ?? (_digitButtonPressCommand = new DelegateCommand<string>(OnDigitButtonPress));
+
+        private DelegateCommand<string> _operationUndoButtonPressCommand;
+        public ICommand OperationUndoButtonPressCommand => _operationUndoButtonPressCommand ?? (_operationUndoButtonPressCommand = new DelegateCommand<string>(OnOperationUndoButtonPress));
+
+       
 
         #endregion
     }
