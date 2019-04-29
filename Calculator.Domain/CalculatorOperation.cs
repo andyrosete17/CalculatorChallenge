@@ -9,6 +9,7 @@
     public class CalculatorOperation : Entity, IEntity
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [StringLength(10)]

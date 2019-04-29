@@ -37,7 +37,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -48,6 +51,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\DelegateCommand.cs" />
+    <Compile Include="Connected Services\CalculationService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Models\CalculationModel.cs" />
     <Compile Include="ViewModels\CalculatorViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
@@ -81,6 +89,25 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Connected Services\CalculationService\CalculationService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CalculationService\CalculationService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CalculationService\CalculationService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CalculationService\CalculationService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CalculationService\CalculationService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CalculationService\CalculationServiceImpl.wsdl" />
+    <None Include="Connected Services\CalculationService\CalculatorChallenge.CalculationService.CalculatorOperation.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -98,6 +125,27 @@
       <Project>{c58a8a02-923b-4293-9ae0-584a5de3d0a4}</Project>
       <Name>Calculator.Service</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\CalculationService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CalculationService\CalculationService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CalculationService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CalculationService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CalculationService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

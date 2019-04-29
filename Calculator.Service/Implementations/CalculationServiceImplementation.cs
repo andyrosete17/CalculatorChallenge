@@ -10,7 +10,7 @@
         public string CalculateResult(CalculateResultRequest request, ICalculatorRepository<CalculatorOperation> _repository)
         {
             var result = string.Empty;
-            if (request.Operator.ValidateOperation())
+            if (!request.Operator.ValidateOperation())
             {
                 result = $"Unknown operation: {request.Operator}";
             }

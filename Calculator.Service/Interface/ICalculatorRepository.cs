@@ -11,5 +11,6 @@
         TEntity Get(int id);
         TEntity Create(Action<TEntity> setupProperty);
         TEntity Create();
+        int CommitContextChanges();
     }
 }

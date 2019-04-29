@@ -41,5 +41,10 @@
             this.dbSet.Add(entity);
             return entity;
         }
+
+        public virtual int CommitContextChanges()
+        {
+            return this.DataContext.SaveChanges();
+        }
     }
 }

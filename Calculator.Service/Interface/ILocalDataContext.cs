@@ -5,5 +5,7 @@
     public interface ILocalDataContext
     {
         DbSet<T> GetDbSet<T>() where T : class, IEntity;
+        int SaveChanges();
+
     }
 }

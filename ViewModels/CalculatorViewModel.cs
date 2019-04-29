@@ -4,6 +4,7 @@ using CalculatorChallenge.Commands;
 using CalculatorChallenge.Models;
 using Calculator.Service;
 using Calculator.Service.DTOs;
+using CalculatorChallenge.CalculationService;
 
 namespace CalculatorChallenge.ViewModels
 {
@@ -13,7 +14,7 @@ namespace CalculatorChallenge.ViewModels
         #region Members
 
         private readonly CalculationModel _calculation;
-        public CalculationService calculationService;
+        public CalculationServiceClient calculationService;
     
         private bool _newDisplayRequired;
 
@@ -30,6 +31,7 @@ namespace CalculatorChallenge.ViewModels
             Operation = string.Empty;
             _lastOperation = string.Empty;
             _fullExpression = string.Empty;
+            calculationService = new CalculationServiceClient();
         }
 
         #endregion
