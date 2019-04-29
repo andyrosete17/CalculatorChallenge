@@ -1,18 +1,18 @@
-﻿using Calculator.Service.Interface;
-using Calculator.Service.Repository;
-using Unity;
-
-namespace Calculator.Service.IOCRegistry
+﻿namespace Calculator.Service.IOCRegistry
 {
+    using Calculator.Service.Interface;
+    using Calculator.Service.Repository;
+    using Unity;
+    using Unity.Lifetime;
+
     public static class CalculatorServiceRegistry
     {
+        public static UnityContainer container = new UnityContainer();
         public static void RegisterComponents()
         {
-            var container = new UnityContainer();
-
             ///Register generic repository
-            container.RegisterType(typeof(ICalculatorRepository<>), typeof(CalculatorRepository<>));
-
+            container.RegisterType(typeof(ICalculatorRepository<>), typeof(CalculatorRepository<>), new TransientLifetimeManager());
+            
         }
     }
 }

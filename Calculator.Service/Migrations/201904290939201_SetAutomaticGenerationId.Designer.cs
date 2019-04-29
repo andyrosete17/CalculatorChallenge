@@ -5,18 +5,18 @@ namespace Calculator.Service.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    public sealed partial class FirstMigration : IMigrationMetadata
+    public sealed partial class SetAutomaticGenerationId : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(FirstMigration));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(SetAutomaticGenerationId));
         
         string IMigrationMetadata.Id
         {
-            get { return "201904272145039_FirstMigration"; }
+            get { return "201904290939201_SetAutomaticGenerationId"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return null; }
+            get { return Resources.GetString("Source"); }
         }
         
         string IMigrationMetadata.Target

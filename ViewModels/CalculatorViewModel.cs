@@ -2,6 +2,9 @@
 using System.Windows.Input;
 using CalculatorChallenge.Commands;
 using CalculatorChallenge.Models;
+using Calculator.Service;
+using Calculator.Service.DTOs;
+using CalculatorChallenge.CalculationService;
 
 namespace CalculatorChallenge.ViewModels
 {
@@ -11,6 +14,7 @@ namespace CalculatorChallenge.ViewModels
         #region Members
 
         private readonly CalculationModel _calculation;
+        public CalculationServiceClient calculationService;
     
         private bool _newDisplayRequired;
 
@@ -27,6 +31,7 @@ namespace CalculatorChallenge.ViewModels
             Operation = string.Empty;
             _lastOperation = string.Empty;
             _fullExpression = string.Empty;
+            calculationService = new CalculationServiceClient();
         }
 
         #endregion
@@ -150,7 +155,13 @@ namespace CalculatorChallenge.ViewModels
                 {
                     SecondOperand = _display;
                     Operation = _lastOperation;
-                    _calculation.CalculateResult();
+                    var calculationResultRequest = new CalculateResultRequest
+                    {
+                        FirstOperand = FirstOperand,
+                        SecondOperand = SecondOperand, 
+                        Operator = Operation
+                    };
+                    _calculation.Result= calculationService.CalculateResult(calculationResultRequest);
 
                     FullExpression = Math.Round(Convert.ToDouble(FirstOperand), 10) + " " + Operation + " "
                                     + Math.Round(Convert.ToDouble(SecondOperand), 10) + " = "
@@ -176,7 +187,12 @@ namespace CalculatorChallenge.ViewModels
             {
                 FirstOperand = Display;
                 Operation = operation;
-                _calculation.CalculateResult();
+                var calculationResultRequest = new CalculateResultRequest
+                {
+                    FirstOperand = FirstOperand,
+                    Operator = Operation
+                };
+                _calculation.Result = calculationService.CalculateResult(calculationResultRequest);
 
                 FullExpression = Operation + "(" + Math.Round(Convert.ToDouble(FirstOperand), 10) + ") = "
                     + Math.Round(Convert.ToDouble(Result), 10);

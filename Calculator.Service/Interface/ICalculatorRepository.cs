@@ -1,6 +1,6 @@
 ﻿namespace Calculator.Service.Interface
 {
-    using Calculator.Common.Interface;
+    using Calculator.Commons.Interface;
     using System;
     using System.Collections.Generic;
 
@@ -11,5 +11,6 @@
         TEntity Get(int id);
         TEntity Create(Action<TEntity> setupProperty);
         TEntity Create();
+        int CommitContextChanges();
     }
 }

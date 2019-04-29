@@ -1,7 +1,6 @@
 ﻿
 namespace Calculator.Service.Implementations
 {
-    using Calculator.Common.Interface;
     using Calculator.Domain;
     using Calculator.Service.Common;
     using Calculator.Service.Helpers;

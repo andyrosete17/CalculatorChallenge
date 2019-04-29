@@ -1,7 +1,7 @@
 ﻿namespace Calculator.Domain
 {
-    using Calculator.Common.Implementations;
-    using Calculator.Common.Interface;
+    using Calculator.Commons.Implementation;
+    using Calculator.Commons.Interface;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -9,6 +9,7 @@
     public class CalculatorOperation : Entity, IEntity
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [StringLength(10)]

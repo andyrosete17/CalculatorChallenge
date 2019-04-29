@@ -1,6 +1,6 @@
 ﻿namespace Calculator.Service.Repository
 {
-    using Calculator.Common.Interface;
+    using Calculator.Commons.Interface;
     using Interface;
     using System;
     using System.Collections.Generic;
@@ -40,6 +40,11 @@
             TEntity entity = new TEntity();
             this.dbSet.Add(entity);
             return entity;
+        }
+
+        public virtual int CommitContextChanges()
+        {
+            return this.DataContext.SaveChanges();
         }
     }
 }

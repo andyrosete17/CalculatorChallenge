@@ -105,9 +105,13 @@
     <Compile Include="Interface\ISineOperation.cs" />
     <Compile Include="Interface\ITangentOperation.cs" />
     <Compile Include="IOCRegistry\CalculatorServiceRegistry.cs" />
-    <Compile Include="Migrations\201904272145039_FirstMigration.cs" />
-    <Compile Include="Migrations\201904272145039_FirstMigration.Designer.cs">
-      <DependentUpon>201904272145039_FirstMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201904281728516_FirstMigration.cs" />
+    <Compile Include="Migrations\201904281728516_FirstMigration.Designer.cs">
+      <DependentUpon>201904281728516_FirstMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904290939201_SetAutomaticGenerationId.cs" />
+    <Compile Include="Migrations\201904290939201_SetAutomaticGenerationId.Designer.cs">
+      <DependentUpon>201904290939201_SetAutomaticGenerationId.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Entity.cs" />
@@ -116,7 +120,7 @@
     <Compile Include="CalculationService.svc.cs">
       <DependentUpon>CalculationService.svc</DependentUpon>
     </Compile>
-    <Compile Include="CalculationService.cs" />
+    <Compile Include="ICalculationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -132,18 +136,21 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Calculator.Common\Calculator.Common.csproj">
-      <Project>{d394feaf-a5d8-43a0-90ec-e9b5e1359fb4}</Project>
-      <Name>Calculator.Common</Name>
+    <ProjectReference Include="..\Calculator.Commons\Calculator.Commons.csproj">
+      <Project>{409868dc-d78d-45ed-9e99-ffff29fc1e96}</Project>
+      <Name>Calculator.Commons</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Calculator.Domain1\Calculator.Domain.csproj">
+    <ProjectReference Include="..\Calculator.Domain\Calculator.Domain.csproj">
       <Project>{14e24359-e596-4eac-9eb7-1490f0370b8e}</Project>
       <Name>Calculator.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201904272145039_FirstMigration.resx">
-      <DependentUpon>201904272145039_FirstMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201904281728516_FirstMigration.resx">
+      <DependentUpon>201904281728516_FirstMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904290939201_SetAutomaticGenerationId.resx">
+      <DependentUpon>201904290939201_SetAutomaticGenerationId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
