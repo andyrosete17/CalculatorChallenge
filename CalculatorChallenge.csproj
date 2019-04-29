@@ -57,6 +57,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Models\CalculationModel.cs" />
+    <Compile Include="Models\CalculatorHistory.cs" />
     <Compile Include="ViewModels\CalculatorViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\CalculatorView.xaml.cs">

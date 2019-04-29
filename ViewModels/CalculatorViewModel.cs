@@ -3,10 +3,8 @@ using CalculatorChallenge.CalculationService;
 using CalculatorChallenge.Commands;
 using CalculatorChallenge.Models;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace CalculatorChallenge.ViewModels
@@ -18,7 +16,10 @@ namespace CalculatorChallenge.ViewModels
 
         private readonly CalculationModel _calculation;
         public CalculationServiceClient calculationService;
-    
+        private string _lastOperation;
+        private string _display;
+        private string _fullExpression;
+        public ObservableCollection<CalculatorHistory> _calculationHistory;
         private bool _newDisplayRequired;
 
         #endregion
@@ -35,7 +36,7 @@ namespace CalculatorChallenge.ViewModels
             _lastOperation = string.Empty;
             _fullExpression = string.Empty;
             calculationService = new CalculationServiceClient();
-            CalculationHistory = new Dictionary<Guid, string>();
+            _calculationHistory = new ObservableCollection<CalculatorHistory>();
             LoadCalculationHistory(calculationService);
         }
 
@@ -61,7 +62,7 @@ namespace CalculatorChallenge.ViewModels
             set => _calculation.Operation = value;
         }
 
-        private string _lastOperation;
+        
         public string LastOperation
         {
             get => _lastOperation;
@@ -74,27 +75,33 @@ namespace CalculatorChallenge.ViewModels
             set => Set(ref _display, value);
         }
 
-        private string _display;
+        
         public string Display
         {
             get => _display;
             set => Set(ref _display, value);
         }
 
-        private string _fullExpression;
+        
         public string FullExpression
         {
             get => _fullExpression;
             set => Set(ref _fullExpression, value);
         }
 
-        public Dictionary<Guid, string> _calculationHistory;
-        public Dictionary<Guid,string> CalculationHistory
+        //public Dictionary<Guid, string> _calculationHistory;
+        //public Dictionary<Guid,string> CalculationHistory
+        //{
+        //    get => _calculationHistory;
+        //    set => Set(ref _calculationHistory, value);
+        //}    
+
+        
+        public ObservableCollection<CalculatorHistory> CalculationHistory
         {
             get => _calculationHistory;
             set => Set(ref _calculationHistory, value);
-        }       
-
+        }
         #endregion
 
         #region Methods
@@ -113,14 +120,22 @@ namespace CalculatorChallenge.ViewModels
                               .ForEach(x=>
                               {
                                   var value = $"{x.FirstOperand}{x.Operation}{x.SecondOperand}={x.Result}";
-                                  CalculationHistory.Add(x.CalculatorId, value);
+                                  CalculationHistory.Add( new CalculatorHistory
+                                                        {
+                                                            Key = x.CalculatorId,
+                                                            Value = value
+                                                        });
                               });
         }
 
         private void LoadCalculationHistory(CalculatorOperation x)
         {
             var value = $"{x.FirstOperand}{x.Operation}{x.SecondOperand}={x.Result}";
-            CalculationHistory.Add(x.CalculatorId, value);
+            CalculationHistory.Add(new CalculatorHistory
+                                    {
+                                        Key = x.CalculatorId,
+                                        Value = value
+                                    });
         }
 
         #endregion
@@ -248,8 +263,8 @@ namespace CalculatorChallenge.ViewModels
         }
          private void OnOperationUndoButtonPress(string obj)
         {
-            var id = CalculationHistory.Last().Key;
-            var result = calculationService.GetDataFromGuid(id);
+            var calculationHistory = CalculationHistory.Last();
+            var result = calculationService.GetDataFromGuid(calculationHistory.Key);
             FirstOperand = result.FirstOperand;
             SecondOperand = result.SecondOperand;
             Operation = result.Operation;
@@ -267,7 +282,7 @@ namespace CalculatorChallenge.ViewModels
                                         + Math.Round(Convert.ToDouble(result.Result), 10);
             }
 
-            CalculationHistory.Remove(id);
+            CalculationHistory.Remove(calculationHistory);
         }
 
         #endregion
