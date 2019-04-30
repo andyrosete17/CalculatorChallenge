@@ -6,7 +6,7 @@
     using Calculator.Service.Interface;
     using System;
 
-    public class TangentOperation : ITangentOperation
+    public class TangentOperation : CalculatorCommons, ITangentOperation
     {
         private readonly ICalculatorRepository<CalculatorOperation> repository;
         private double? firstOperand;
@@ -22,12 +22,11 @@
 
         public CalculatorOperation Execute()
         {
-            var calculatorCommons = new CalculatorCommons();
             var result = new CalculatorOperation
             {
                 Result = !string.IsNullOrEmpty(error) ? error : Math.Tan(this.firstOperand.Value.DegreeToRadian()).ToString()
             };
-            calculatorCommons.AddCalculatorResult(this.firstOperand, null, result.Result, "tan", this.repository);
+            AddCalculatorResult(this.firstOperand, null, result.Result, "tan", this.repository);
 
             return result;
         }

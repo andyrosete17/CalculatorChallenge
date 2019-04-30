@@ -4,7 +4,7 @@
     using Calculator.Service.Interface;
     using System;
 
-    public class CalculatorCommons
+    public abstract class CalculatorCommons
     {
         /// <summary>
         /// Build calculator operation dto

@@ -5,7 +5,7 @@
     using Calculator.Service.Helpers;
     using Calculator.Service.Interface;
 
-    public class DivideOperation : IDivideOperation
+    public class DivideOperation : CalculatorCommons, IDivideOperation
     {
         private readonly ICalculatorRepository<CalculatorOperation> repository;
         private double? firstOperand, secondOperand;
@@ -23,12 +23,11 @@
 
         public CalculatorOperation Execute()
         {
-            var calculatorCommons = new CalculatorCommons();
             var result = new CalculatorOperation
             {
                 Result = !string.IsNullOrEmpty(error) ? error : (this.firstOperand / this.secondOperand).ToString()
             };
-            calculatorCommons.AddCalculatorResult(this.firstOperand, this.secondOperand, result.Result, "/", this.repository);
+            AddCalculatorResult(this.firstOperand, this.secondOperand, result.Result, "/", this.repository);
 
             return result;
         }

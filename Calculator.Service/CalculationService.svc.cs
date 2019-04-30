@@ -1,5 +1,6 @@
 ﻿namespace Calculator.Service
 {
+    using Calculator.Commons.Interface;
     using Calculator.Domain;
     using Calculator.Service.DTOs;
     using Calculator.Service.Implementations;
@@ -28,6 +29,16 @@
                                                             {
                                                                 new ParameterOverride("dataContext", localDataContext)
                                                             });
+
+            this.service = new CalculationServiceImplementation();
+        }
+
+        public CalculationServiceImpl(ICalculatorRepository<CalculatorOperation> repository, LocalDataContext _localDataContext)
+        {
+            localDataContext = _localDataContext;
+            ///IOC register initialization
+            CalculatorServiceRegistry.RegisterComponents();
+            _repository = repository;
 
             this.service = new CalculationServiceImplementation();
         }
