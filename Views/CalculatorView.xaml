@@ -7,28 +7,28 @@
         mc:Ignorable="d"
         Icon="{x:Null}"
         Background="Black"
-        Title="Calculator Challenge" 
+        Title="Calculator Challenge"
         d:DataContext="{d:DesignInstance viewModels:CalculatorViewModel, d:IsDesignTimeCreatable=False}"
         SizeToContent="WidthAndHeight">
     <DockPanel Name="MyPanel">
         <Grid Name="MyGrid"  ShowGridLines="False" Height="287" Width="475">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
             </Grid.RowDefinitions>
 
             <TextBlock  Name="DisplayBox" Text="{Binding Display, Mode=TwoWay}" Background="White"  Grid.ColumnSpan="6" FontSize="24" TextAlignment="Right"></TextBlock>
@@ -73,9 +73,9 @@
                 </ListView.View>
             </ListView>
             <TextBlock  Name="QuadraticText" Text="Quadratic Calculator (ax^2 + bx + c)" Background="White"  Grid.ColumnSpan="6" Grid.Row="6" FontSize="24" TextAlignment="Center"></TextBlock>
-            <TextBox Name="aParameter" Text="{Binding aParameter, Mode=TwoWay}" HorizontalAlignment="Left" Height="35" Grid.Row="7" Grid.Column="0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Width="79" TextAlignment="Center"/>
-            <TextBox Name="bParameter" Text="{Binding bParameter, Mode=TwoWay}" HorizontalAlignment="Left" Height="35" Grid.Row="7" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Width="79" TextAlignment="Center"/>
-            <TextBox Name="cParameter" Text="{Binding cParameter, Mode=TwoWay}" HorizontalAlignment="Left" Height="35" Grid.Row="7" Grid.Column="2" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Width="79" TextAlignment="Center"/>
+            <TextBox Name="aParameter" Text="{Binding aParameter, Mode=TwoWay}" HorizontalAlignment="Left" Height="35" Grid.Row="7" Grid.Column="0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Width="79" TextAlignment="Center" />
+            <TextBox Name="bParameter" Text="{Binding bParameter, Mode=TwoWay}" HorizontalAlignment="Left" Height="35" Grid.Row="7" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Width="79" TextAlignment="Center" />
+            <TextBox Name="cParameter" Text="{Binding cParameter, Mode=TwoWay}" HorizontalAlignment="Left" Height="35" Grid.Row="7" Grid.Column="2" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Width="79" TextAlignment="Center" />
             <Button Name="quadraticCalculate" Command="{Binding OperationQuadraticButtonPressCommand}" Background="Darkgray"  Grid.Column="3" Grid.Row="7" Margin="0,0,0,0">=</Button>
             <TextBlock  Name="QuadraticTextRoot1" Text="{Binding Root1, Mode=TwoWay}" Background="White" Grid.Column="4" Grid.Row="7" FontSize="24" TextAlignment="Center"></TextBlock>
             <TextBlock  Name="QuadraticTextRoot2" Text="{Binding Root2, Mode=TwoWay}" Background="White" Grid.Column="5" Grid.Row="7" FontSize="24" TextAlignment="Center"></TextBlock>

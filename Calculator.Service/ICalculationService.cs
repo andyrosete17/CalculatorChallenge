@@ -1,5 +1,4 @@
-﻿
-namespace Calculator.Service
+﻿namespace Calculator.Service
 {
     using Calculator.Domain;
     using Calculator.Service.DTOs;

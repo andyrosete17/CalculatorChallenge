@@ -6,11 +6,11 @@
     using Calculator.Service.Interface;
     using System;
 
-    public class SineOperation : ISineOperation
+    public class SineOperation : CalculatorCommons, ISineOperation
     {
         private readonly ICalculatorRepository<CalculatorOperation> repository;
-        double? firstOperand;
-        string error;
+        private double? firstOperand;
+        private readonly string error;
 
         public SineOperation(
             string firstOperand,
@@ -22,11 +22,11 @@
 
         public CalculatorOperation Execute()
         {
-            var calculatorCommons = new CalculatorCommons();
-            var result = new CalculatorOperation();
-
-            result.Result = !string.IsNullOrEmpty(error) ? error : Math.Sin(this.firstOperand.Value.DegreeToRadian()).ToString();
-            calculatorCommons.AddCalculatorResult(this.firstOperand, null, result.Result, "sin", this.repository);
+            var result = new CalculatorOperation
+            {
+                Result = !string.IsNullOrEmpty(error) ? error : Math.Sin(this.firstOperand.Value.DegreeToRadian()).ToString()
+            };
+            AddCalculatorResult(this.firstOperand, null, result.Result, "sin", this.repository);
 
             return result;
         }

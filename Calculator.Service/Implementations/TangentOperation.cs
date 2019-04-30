@@ -6,11 +6,11 @@
     using Calculator.Service.Interface;
     using System;
 
-    public class TangentOperation : ITangentOperation
+    public class TangentOperation : CalculatorCommons, ITangentOperation
     {
         private readonly ICalculatorRepository<CalculatorOperation> repository;
-        double? firstOperand;
-        string error;
+        private double? firstOperand;
+        private readonly string error;
 
         public TangentOperation(
             string firstOperand,
@@ -22,11 +22,11 @@
 
         public CalculatorOperation Execute()
         {
-            var calculatorCommons = new CalculatorCommons();
-            var result = new CalculatorOperation();
-
-            result.Result = !string.IsNullOrEmpty(error) ? error : Math.Tan(this.firstOperand.Value.DegreeToRadian()).ToString();
-            calculatorCommons.AddCalculatorResult(this.firstOperand, null, result.Result, "tan", this.repository);
+            var result = new CalculatorOperation
+            {
+                Result = !string.IsNullOrEmpty(error) ? error : Math.Tan(this.firstOperand.Value.DegreeToRadian()).ToString()
+            };
+            AddCalculatorResult(this.firstOperand, null, result.Result, "tan", this.repository);
 
             return result;
         }

@@ -6,11 +6,13 @@
 
     public class FactoryPatterImplementation
     {
-        ICalculatorRepository<CalculatorOperation> _repository;
+        private readonly ICalculatorRepository<CalculatorOperation> _repository;
+
         public FactoryPatterImplementation(ICalculatorRepository<CalculatorOperation> repository)
         {
             this._repository = repository;
         }
+
         /// <summary>
         /// Factory pattern to get operation interface
         /// </summary>

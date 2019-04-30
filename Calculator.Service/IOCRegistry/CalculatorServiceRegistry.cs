@@ -8,11 +8,11 @@
     public static class CalculatorServiceRegistry
     {
         public static UnityContainer container = new UnityContainer();
+
         public static void RegisterComponents()
         {
             ///Register generic repository
             container.RegisterType(typeof(ICalculatorRepository<>), typeof(CalculatorRepository<>), new TransientLifetimeManager());
-            
         }
     }
 }

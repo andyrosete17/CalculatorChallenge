@@ -5,11 +5,11 @@
     using Calculator.Service.Helpers;
     using Calculator.Service.Interface;
 
-    public class MultiplyOperation : IMultiplyOperation
+    public class MultiplyOperation : CalculatorCommons, IMultiplyOperation
     {
         private readonly ICalculatorRepository<CalculatorOperation> repository;
-        double? firstOperand, secondOperand;
-        string error;
+        private double? firstOperand, secondOperand;
+        private readonly string error;
 
         public MultiplyOperation(
             string firstOperand,
@@ -23,11 +23,11 @@
 
         public CalculatorOperation Execute()
         {
-            var calculatorCommons = new CalculatorCommons();
-            var result = new CalculatorOperation();
-
-            result.Result = !string.IsNullOrEmpty(error) ? error : (this.firstOperand * this.secondOperand).ToString();
-            result = calculatorCommons.AddCalculatorResult(this.firstOperand, this.secondOperand, result.Result, "*", this.repository);
+            var result = new CalculatorOperation
+            {
+                Result = !string.IsNullOrEmpty(error) ? error : (this.firstOperand * this.secondOperand).ToString()
+            };
+            result = AddCalculatorResult(this.firstOperand, this.secondOperand, result.Result, "*", this.repository);
 
             return result;
         }

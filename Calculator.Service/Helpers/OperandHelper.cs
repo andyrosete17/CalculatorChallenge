@@ -1,5 +1,4 @@
-﻿
-namespace Calculator.Service.Helpers
+﻿namespace Calculator.Service.Helpers
 {
     using System;
 
@@ -45,9 +44,10 @@ namespace Calculator.Service.Helpers
                 case "cos":
                 case "sin":
                     return true;
+
                 default:
                     return false;
             }
-        }      
+        }
     }
 }

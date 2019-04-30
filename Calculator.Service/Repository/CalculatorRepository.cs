@@ -16,7 +16,7 @@
         }
 
         protected ILocalDataContext DataContext { get; private set; }
-        private DbSet<TEntity> dbSet;
+        private readonly DbSet<TEntity> dbSet;
 
         public IEnumerable<TEntity> GetAll()
         {
@@ -56,6 +56,6 @@
         public virtual int CommitContextChanges()
         {
             return this.DataContext.SaveChanges();
-        }       
+        }
     }
 }

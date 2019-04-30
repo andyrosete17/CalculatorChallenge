@@ -26,6 +26,5 @@
 
         [StringLength(20)]
         public string Result { get; set; }
-
     }
 }

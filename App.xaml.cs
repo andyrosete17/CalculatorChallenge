@@ -1,5 +1,4 @@
-﻿
-namespace CalculatorChallenge
+﻿namespace CalculatorChallenge
 {
     /// <summary>
     /// Interaction logic for App.xaml

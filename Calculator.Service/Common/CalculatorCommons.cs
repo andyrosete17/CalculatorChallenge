@@ -4,7 +4,7 @@
     using Calculator.Service.Interface;
     using System;
 
-    public class CalculatorCommons
+    public abstract class CalculatorCommons
     {
         /// <summary>
         /// Build calculator operation dto
@@ -15,7 +15,7 @@
         /// <param name="operation">operation</param>
         /// <param name="repository">repository</param>
         public CalculatorOperation AddCalculatorResult(double? firstOperand, double? secondOperand, string result, string operation, ICalculatorRepository<CalculatorOperation> repository)
-        {            
+        {
             var calculatorOperation = repository.Create();
             calculatorOperation.FirstOperand = firstOperand.ToString();
             calculatorOperation.SecondOperand = secondOperand.ToString();
@@ -26,6 +26,5 @@
 
             return calculatorOperation;
         }
-
     }
 }
