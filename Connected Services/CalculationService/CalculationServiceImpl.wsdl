@@ -33,6 +33,12 @@
   <wsdl:message name="ICalculationService_CalculateResult_OutputMessage">
     <wsdl:part name="parameters" element="tns:CalculateResultResponse" />
   </wsdl:message>
+  <wsdl:message name="ICalculationService_RemoveData_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveData" />
+  </wsdl:message>
+  <wsdl:message name="ICalculationService_RemoveData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveDataResponse" />
+  </wsdl:message>
   <wsdl:portType name="ICalculationService">
     <wsdl:operation name="GetData">
       <wsdl:input wsaw:Action="http://tempuri.org/ICalculationService/GetData" message="tns:ICalculationService_GetData_InputMessage" />
@@ -49,6 +55,10 @@
     <wsdl:operation name="CalculateResult">
       <wsdl:input wsaw:Action="http://tempuri.org/ICalculationService/CalculateResult" message="tns:ICalculationService_CalculateResult_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICalculationService/CalculateResultResponse" message="tns:ICalculationService_CalculateResult_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveData">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICalculationService/RemoveData" message="tns:ICalculationService_RemoveData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICalculationService/RemoveDataResponse" message="tns:ICalculationService_RemoveData_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ICalculationService" type="tns:ICalculationService">
@@ -82,6 +92,15 @@
     </wsdl:operation>
     <wsdl:operation name="CalculateResult">
       <soap:operation soapAction="http://tempuri.org/ICalculationService/CalculateResult" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveData">
+      <soap:operation soapAction="http://tempuri.org/ICalculationService/RemoveData" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -173,6 +173,12 @@ namespace CalculatorChallenge.CalculationService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICalculationService/CalculateResult", ReplyAction="http://tempuri.org/ICalculationService/CalculateResultResponse")]
         System.Threading.Tasks.Task<CalculatorChallenge.CalculationService.CalculatorOperation> CalculateResultAsync(Calculator.Service.DTOs.CalculateResultRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICalculationService/RemoveData", ReplyAction="http://tempuri.org/ICalculationService/RemoveDataResponse")]
+        void RemoveData(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICalculationService/RemoveData", ReplyAction="http://tempuri.org/ICalculationService/RemoveDataResponse")]
+        System.Threading.Tasks.Task RemoveDataAsync(System.Guid id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -232,6 +238,14 @@ namespace CalculatorChallenge.CalculationService {
         
         public System.Threading.Tasks.Task<CalculatorChallenge.CalculationService.CalculatorOperation> CalculateResultAsync(Calculator.Service.DTOs.CalculateResultRequest request) {
             return base.Channel.CalculateResultAsync(request);
+        }
+        
+        public void RemoveData(System.Guid id) {
+            base.Channel.RemoveData(id);
+        }
+        
+        public System.Threading.Tasks.Task RemoveDataAsync(System.Guid id) {
+            return base.Channel.RemoveDataAsync(id);
         }
     }
 }

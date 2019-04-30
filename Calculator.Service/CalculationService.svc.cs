@@ -51,5 +51,11 @@
         {
             return _repository.Get(id);
         }
+
+        public void RemoveData(Guid id)
+        {
+            _repository.RemoveData(id);
+            _repository.CommitContextChanges();
+        }
     }
 }

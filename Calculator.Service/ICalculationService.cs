@@ -22,5 +22,8 @@ namespace Calculator.Service
 
         [OperationContract]
         CalculatorOperation CalculateResult(CalculateResultRequest request);
+
+        [OperationContract]
+        void RemoveData(Guid id);     
     }
 }

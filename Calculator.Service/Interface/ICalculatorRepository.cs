@@ -13,5 +13,6 @@
         TEntity Create(Action<TEntity> setupProperty);
         TEntity Create();
         int CommitContextChanges();
+        void RemoveData(Guid id);
     }
 }

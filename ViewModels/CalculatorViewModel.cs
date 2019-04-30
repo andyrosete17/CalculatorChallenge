@@ -87,15 +87,7 @@ namespace CalculatorChallenge.ViewModels
         {
             get => _fullExpression;
             set => Set(ref _fullExpression, value);
-        }
-
-        //public Dictionary<Guid, string> _calculationHistory;
-        //public Dictionary<Guid,string> CalculationHistory
-        //{
-        //    get => _calculationHistory;
-        //    set => Set(ref _calculationHistory, value);
-        //}    
-
+        }     
         
         public ObservableCollection<CalculatorHistory> CalculationHistory
         {
@@ -218,7 +210,7 @@ namespace CalculatorChallenge.ViewModels
                                     + Math.Round(Convert.ToDouble(calculationServiceResult.Result), 10);
 
                     LastOperation = operation;
-                    Display = Result;
+                    Display = calculationServiceResult.Result;
                     FirstOperand = _display;
                 }
                 _newDisplayRequired = true;
@@ -268,6 +260,7 @@ namespace CalculatorChallenge.ViewModels
             FirstOperand = result.FirstOperand;
             SecondOperand = result.SecondOperand;
             Operation = result.Operation;
+            _lastOperation = "=";
             Display = Result = result.Result;
 
             if (string.IsNullOrEmpty(result.SecondOperand))
@@ -281,7 +274,7 @@ namespace CalculatorChallenge.ViewModels
                                         + Math.Round(Convert.ToDouble(SecondOperand), 10) + " = "
                                         + Math.Round(Convert.ToDouble(result.Result), 10);
             }
-
+            calculationService.RemoveData(calculationHistory.Key);
             CalculationHistory.Remove(calculationHistory);
         }
 

@@ -33,6 +33,12 @@
             return this.dbSet.Find(id);
         }
 
+        public void RemoveData(Guid id)
+        {
+            var entity = this.dbSet.Find(id);
+            this.dbSet.Remove(entity);
+        }
+
         public TEntity Create(Action<TEntity> setupProperty)
         {
             TEntity newEntity = new TEntity();
@@ -50,6 +56,6 @@
         public virtual int CommitContextChanges()
         {
             return this.DataContext.SaveChanges();
-        }
+        }       
     }
 }
