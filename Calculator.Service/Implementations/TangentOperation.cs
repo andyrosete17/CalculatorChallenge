@@ -9,8 +9,8 @@
     public class TangentOperation : ITangentOperation
     {
         private readonly ICalculatorRepository<CalculatorOperation> repository;
-        double? firstOperand;
-        string error;
+        private double? firstOperand;
+        private readonly string error;
 
         public TangentOperation(
             string firstOperand,
@@ -23,9 +23,10 @@
         public CalculatorOperation Execute()
         {
             var calculatorCommons = new CalculatorCommons();
-            var result = new CalculatorOperation();
-
-            result.Result = !string.IsNullOrEmpty(error) ? error : Math.Tan(this.firstOperand.Value.DegreeToRadian()).ToString();
+            var result = new CalculatorOperation
+            {
+                Result = !string.IsNullOrEmpty(error) ? error : Math.Tan(this.firstOperand.Value.DegreeToRadian()).ToString()
+            };
             calculatorCommons.AddCalculatorResult(this.firstOperand, null, result.Result, "tan", this.repository);
 
             return result;

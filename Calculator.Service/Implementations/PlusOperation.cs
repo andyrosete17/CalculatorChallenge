@@ -8,11 +8,11 @@
     public class PlusOperation : IPlusOperation
     {
         private readonly ICalculatorRepository<CalculatorOperation> repository;
-        double? firstOperand, secondOperand;
-        string error;
+        private double? firstOperand, secondOperand;
+        private readonly string error;
 
         public PlusOperation(
-            string firstOperand, 
+            string firstOperand,
             string secondOperand,
             ICalculatorRepository<CalculatorOperation> repository)
         {
@@ -24,9 +24,10 @@
         public CalculatorOperation Execute()
         {
             var calculatorCommons = new CalculatorCommons();
-            var result = new CalculatorOperation();
-
-            result.Result = !string.IsNullOrEmpty(error) ? error : (this.firstOperand + this.secondOperand).ToString();
+            var result = new CalculatorOperation
+            {
+                Result = !string.IsNullOrEmpty(error) ? error : (this.firstOperand + this.secondOperand).ToString()
+            };
             result = calculatorCommons.AddCalculatorResult(this.firstOperand, this.secondOperand, result.Result, "+", this.repository);
 
             return result;

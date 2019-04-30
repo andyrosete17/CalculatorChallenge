@@ -8,11 +8,17 @@
          where TEntity : IEntity
     {
         IEnumerable<TEntity> GetAll();
+
         TEntity Get(Guid id);
+
         TEntity Get(int id);
+
         TEntity Create(Action<TEntity> setupProperty);
+
         TEntity Create();
+
         int CommitContextChanges();
+
         void RemoveData(Guid id);
     }
 }

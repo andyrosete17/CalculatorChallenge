@@ -5,6 +5,7 @@ namespace CalculatorChallenge.Models
     public class CalculationModel
     {
         #region CTor
+
         public CalculationModel()
         {
             FirstOperand = string.Empty;
@@ -12,9 +13,11 @@ namespace CalculatorChallenge.Models
             Operation = string.Empty;
             Result = string.Empty;
         }
-        #endregion
+
+        #endregion CTor
 
         #region Properties
+
         public string FirstOperand { get; set; }
 
         public string SecondOperand { get; set; }
@@ -24,6 +27,7 @@ namespace CalculatorChallenge.Models
         public string Result { get; set; }
 
         public Guid CalculatorId { get; set; }
-        #endregion
+
+        #endregion Properties
     }
 }

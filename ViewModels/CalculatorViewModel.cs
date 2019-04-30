@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace CalculatorChallenge.ViewModels
 {
-    public class CalculatorViewModel : 
+    public class CalculatorViewModel :
         ViewModelBase
     {
         #region Members
@@ -27,7 +27,7 @@ namespace CalculatorChallenge.ViewModels
         private string _root1;
         private string _root2;
 
-        #endregion
+        #endregion Members
 
         #region CTor
 
@@ -51,7 +51,7 @@ namespace CalculatorChallenge.ViewModels
             _root2 = "Root2";
         }
 
-        #endregion
+        #endregion CTor
 
         #region Properties
 
@@ -73,7 +73,6 @@ namespace CalculatorChallenge.ViewModels
             set => _calculation.Operation = value;
         }
 
-        
         public string LastOperation
         {
             get => _lastOperation;
@@ -86,20 +85,18 @@ namespace CalculatorChallenge.ViewModels
             set => Set(ref _display, value);
         }
 
-        
         public string Display
         {
             get => _display;
             set => Set(ref _display, value);
         }
 
-        
         public string FullExpression
         {
             get => _fullExpression;
             set => Set(ref _fullExpression, value);
-        }     
-        
+        }
+
         public ObservableCollection<CalculatorHistory> CalculationHistory
         {
             get => _calculationHistory;
@@ -129,12 +126,14 @@ namespace CalculatorChallenge.ViewModels
             get => _root1;
             set => Set(ref _root1, value);
         }
+
         public string Root2
         {
             get => _root2;
             set => Set(ref _root2, value);
         }
-        #endregion
+
+        #endregion Properties
 
         #region Methods
 
@@ -149,14 +148,14 @@ namespace CalculatorChallenge.ViewModels
             CalculationHistory?.Clear();
             calculationService.GetAllData()
                               .ToList()
-                              .ForEach(x=>
+                              .ForEach(x =>
                               {
                                   var value = $"{x.FirstOperand}{x.Operation}{x.SecondOperand}={x.Result}";
-                                  CalculationHistory.Add( new CalculatorHistory
-                                                        {
-                                                            Key = x.CalculatorId,
-                                                            Value = value
-                                                        });
+                                  CalculationHistory.Add(new CalculatorHistory
+                                  {
+                                      Key = x.CalculatorId,
+                                      Value = value
+                                  });
                               });
         }
 
@@ -164,13 +163,13 @@ namespace CalculatorChallenge.ViewModels
         {
             var value = $"{x.FirstOperand}{x.Operation}{x.SecondOperand}={x.Result}";
             CalculationHistory.Add(new CalculatorHistory
-                                    {
-                                        Key = x.CalculatorId,
-                                        Value = value
-                                    });
+            {
+                Key = x.CalculatorId,
+                Value = value
+            });
         }
 
-        #endregion
+        #endregion Methods
 
         #region Callbacks
 
@@ -187,18 +186,31 @@ namespace CalculatorChallenge.ViewModels
                     LastOperation = string.Empty;
                     FullExpression = string.Empty;
                     break;
+
                 case "Del":
                     if (_display.Length > 1)
+                    {
                         Display = _display.Substring(0, _display.Length - 1);
-                    else Display = "0";
+                    }
+                    else
+                    {
+                        Display = "0";
+                    }
+
                     break;
+
                 case "+/-":
                     if (_display.Contains("-") || _display == "0")
                     {
                         Display = _display.Remove(_display.IndexOf("-"), 1);
                     }
-                    else Display = "-" + _display;
+                    else
+                    {
+                        Display = "-" + _display;
+                    }
+
                     break;
+
                 case ".":
                     if (_newDisplayRequired)
                     {
@@ -212,11 +224,17 @@ namespace CalculatorChallenge.ViewModels
                         }
                     }
                     break;
+
                 default:
                     if (_display == "0" || _newDisplayRequired)
+                    {
                         Display = button;
+                    }
                     else
+                    {
                         Display = _display + button;
+                    }
+
                     break;
             }
             _newDisplayRequired = false;
@@ -239,7 +257,7 @@ namespace CalculatorChallenge.ViewModels
                     var calculationResultRequest = new CalculateResultRequest
                     {
                         FirstOperand = FirstOperand,
-                        SecondOperand = SecondOperand, 
+                        SecondOperand = SecondOperand,
                         Operator = Operation
                     };
                     var calculationServiceResult = calculationService.CalculateResult(calculationResultRequest);
@@ -261,8 +279,6 @@ namespace CalculatorChallenge.ViewModels
                 LogExceptionInformation(ex);
             }
         }
-
-       
 
         //for sin,cos,tan
         public void OnSingularOperationButtonPress(string operation)
@@ -293,7 +309,8 @@ namespace CalculatorChallenge.ViewModels
                 LogExceptionInformation(ex);
             }
         }
-         private void OnOperationUndoButtonPress(string obj)
+
+        private void OnOperationUndoButtonPress(string obj)
         {
             var calculationHistory = CalculationHistory.Last();
             var result = calculationService.GetDataFromGuid(calculationHistory.Key);
@@ -320,7 +337,7 @@ namespace CalculatorChallenge.ViewModels
 
         private void OnOperationQuadraticButtonPress(string obj)
         {
-            if (decimal.TryParse(this.aParameter, out var aParameterDecimal) 
+            if (decimal.TryParse(this.aParameter, out var aParameterDecimal)
                 && decimal.TryParse(this.bParameter, out var bParameterDecimal)
                 && decimal.TryParse(this.cParameter, out var cParameterDecimal))
             {
@@ -350,7 +367,7 @@ namespace CalculatorChallenge.ViewModels
             }
         }
 
-        #endregion
+        #endregion Callbacks
 
         #region Commands
 
@@ -369,8 +386,6 @@ namespace CalculatorChallenge.ViewModels
         private DelegateCommand<string> _operationQuadraticButtonPressCommand;
         public ICommand OperationQuadraticButtonPressCommand => _operationQuadraticButtonPressCommand ?? (_operationQuadraticButtonPressCommand = new DelegateCommand<string>(OnOperationQuadraticButtonPress));
 
-        
-
-        #endregion
+        #endregion Commands
     }
 }

@@ -9,8 +9,8 @@
     public class CosineOperation : ICosineOperation
     {
         private readonly ICalculatorRepository<CalculatorOperation> repository;
-        double? firstOperand;
-        string error;
+        private double? firstOperand;
+        private readonly string error;
 
         public CosineOperation(
             string firstOperand,
@@ -23,9 +23,10 @@
         public CalculatorOperation Execute()
         {
             var calculatorCommons = new CalculatorCommons();
-            var result = new CalculatorOperation();
-
-            result.Result = !string.IsNullOrEmpty(error) ? error : Math.Cos(this.firstOperand.Value.DegreeToRadian()).ToString();
+            var result = new CalculatorOperation
+            {
+                Result = !string.IsNullOrEmpty(error) ? error : Math.Cos(this.firstOperand.Value.DegreeToRadian()).ToString()
+            };
             calculatorCommons.AddCalculatorResult(this.firstOperand, null, result.Result, "cos", this.repository);
 
             return result;

@@ -3,20 +3,20 @@ using System.Windows.Input;
 
 namespace CalculatorChallenge.Commands
 {
-    public class DelegateCommand : 
+    public class DelegateCommand :
         ICommand
     {
         #region Events
 
         public event EventHandler CanExecuteChanged;
 
-        #endregion
+        #endregion Events
 
         #region Members
 
         private readonly Action _executeMethod = null;
 
-        #endregion
+        #endregion Members
 
         #region CTor
 
@@ -25,7 +25,7 @@ namespace CalculatorChallenge.Commands
             _executeMethod = executeMethod ?? throw new ArgumentNullException(nameof(executeMethod));
         }
 
-        #endregion
+        #endregion CTor
 
         #region Methods
 
@@ -39,23 +39,23 @@ namespace CalculatorChallenge.Commands
             _executeMethod?.Invoke();
         }
 
-        #endregion
+        #endregion Methods
     }
 
-    public class DelegateCommand<T> : 
+    public class DelegateCommand<T> :
         ICommand
     {
         #region Events
 
         public event EventHandler CanExecuteChanged;
 
-        #endregion
+        #endregion Events
 
         #region Members
 
         private readonly Action<T> _executeMethod = null;
 
-        #endregion
+        #endregion Members
 
         #region CTor
 
@@ -64,7 +64,7 @@ namespace CalculatorChallenge.Commands
             _executeMethod = executeMethod ?? throw new ArgumentNullException(nameof(executeMethod));
         }
 
-        #endregion
+        #endregion CTor
 
         #region Methods
 
@@ -78,6 +78,6 @@ namespace CalculatorChallenge.Commands
             _executeMethod?.Invoke((T)parameter);
         }
 
-        #endregion
+        #endregion Methods
     }
 }

@@ -1,11 +1,11 @@
 ﻿namespace Calculator.Service.Models
 {
     using Domain;
-    using System.Data.Entity;
     using Interface;
+    using System;
+    using System.Data.Entity;
     using System.Data.Entity.Validation;
     using System.Diagnostics;
-    using System;
 
     public class LocalDataContext : DataContext, ILocalDataContext
     {
@@ -22,7 +22,7 @@
             return this.Set<T>();
         }
 
-        int SaveChanges()
+        private int SaveChanges()
         {
             int ret = -1;
 

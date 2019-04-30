@@ -15,7 +15,7 @@
         /// <param name="operation">operation</param>
         /// <param name="repository">repository</param>
         public CalculatorOperation AddCalculatorResult(double? firstOperand, double? secondOperand, string result, string operation, ICalculatorRepository<CalculatorOperation> repository)
-        {            
+        {
             var calculatorOperation = repository.Create();
             calculatorOperation.FirstOperand = firstOperand.ToString();
             calculatorOperation.SecondOperand = secondOperand.ToString();
@@ -26,6 +26,5 @@
 
             return calculatorOperation;
         }
-
     }
 }
