@@ -21,6 +21,11 @@ namespace CalculatorChallenge.ViewModels
         private string _fullExpression;
         public ObservableCollection<CalculatorHistory> _calculationHistory;
         private bool _newDisplayRequired;
+        private string _aparameter;
+        private string _bparameter;
+        private string _cparameter;
+        private string _root1;
+        private string _root2;
 
         #endregion
 
@@ -38,6 +43,12 @@ namespace CalculatorChallenge.ViewModels
             calculationService = new CalculationServiceClient();
             _calculationHistory = new ObservableCollection<CalculatorHistory>();
             LoadCalculationHistory(calculationService);
+
+            _aparameter = "a";
+            _bparameter = "b";
+            _cparameter = "c";
+            _root1 = "Root1";
+            _root2 = "Root2";
         }
 
         #endregion
@@ -93,6 +104,35 @@ namespace CalculatorChallenge.ViewModels
         {
             get => _calculationHistory;
             set => Set(ref _calculationHistory, value);
+        }
+
+        public string aParameter
+        {
+            get => _aparameter;
+            set => _aparameter = value;
+        }
+
+        public string bParameter
+        {
+            get => _bparameter;
+            set => _bparameter = value;
+        }
+
+        public string cParameter
+        {
+            get => _cparameter;
+            set => _cparameter = value;
+        }
+
+        public string Root1
+        {
+            get => _root1;
+            set => Set(ref _root1, value);
+        }
+        public string Root2
+        {
+            get => _root2;
+            set => Set(ref _root2, value);
         }
         #endregion
 
@@ -278,6 +318,38 @@ namespace CalculatorChallenge.ViewModels
             CalculationHistory.Remove(calculationHistory);
         }
 
+        private void OnOperationQuadraticButtonPress(string obj)
+        {
+            if (decimal.TryParse(this.aParameter, out var aParameterDecimal) 
+                && decimal.TryParse(this.bParameter, out var bParameterDecimal)
+                && decimal.TryParse(this.cParameter, out var cParameterDecimal))
+            {
+                string format = "0.####";
+                var result = calculationService.CalculateRoots(aParameterDecimal, bParameterDecimal, cParameterDecimal);
+                if (result.imaginary)
+                {
+                    Root1 = result.iOne.ToString();
+                    Root2 = result.iTwo.ToString();
+                }
+                else
+                {
+                    if (result.one == result.two)
+                    {
+                        Root1 = Root2 = result.one.ToString(format);
+                    }
+                    else
+                    {
+                        Root1 = result.one.ToString(format);
+                        Root2 = result.two.ToString(format);
+                    }
+                }
+            }
+            else
+            {
+                Display = "Error with the quadratic parameters";
+            }
+        }
+
         #endregion
 
         #region Commands
@@ -294,7 +366,10 @@ namespace CalculatorChallenge.ViewModels
         private DelegateCommand<string> _operationUndoButtonPressCommand;
         public ICommand OperationUndoButtonPressCommand => _operationUndoButtonPressCommand ?? (_operationUndoButtonPressCommand = new DelegateCommand<string>(OnOperationUndoButtonPress));
 
-       
+        private DelegateCommand<string> _operationQuadraticButtonPressCommand;
+        public ICommand OperationQuadraticButtonPressCommand => _operationQuadraticButtonPressCommand ?? (_operationQuadraticButtonPressCommand = new DelegateCommand<string>(OnOperationQuadraticButtonPress));
+
+        
 
         #endregion
     }

@@ -84,6 +84,7 @@
   <ItemGroup>
     <Compile Include="Common\CalculatorCommons.cs" />
     <Compile Include="DTOs\CalculateResultRequest.cs" />
+    <Compile Include="DTOs\Root.cs" />
     <Compile Include="Helpers\OperandHelper.cs" />
     <Compile Include="Implementations\CalculationServiceImplementation.cs" />
     <Compile Include="Implementations\CosineOperation.cs" />

@@ -24,6 +24,9 @@ namespace Calculator.Service
         CalculatorOperation CalculateResult(CalculateResultRequest request);
 
         [OperationContract]
-        void RemoveData(Guid id);     
+        void RemoveData(Guid id);
+
+        [OperationContract]
+        Root CalculateRoots(decimal a, decimal b, decimal c);
     }
 }

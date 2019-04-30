@@ -57,5 +57,28 @@
             _repository.RemoveData(id);
             _repository.CommitContextChanges();
         }
+
+        public Root CalculateRoots(decimal a, decimal b, decimal c)
+        {
+            //x = (-b +- sqrt(b^2 - 4ac)) / 2a
+            Root roots = new Root();
+            string format = "0.####";
+            decimal discriminant = (b * b) - (4 * a * c);
+
+            roots.imaginary = discriminant < 0;
+
+            if (roots.imaginary)
+            {
+                roots.iOne = "(" + (b != 0 ? (-b).ToString(format) + " + " : "") + "i * sqrt(" + -discriminant + ")) / (" + 2 * a + ")";
+                roots.iTwo = "(" + (b != 0 ? (-b).ToString(format) + " - " : "") + "i * sqrt(" + -discriminant + ")) / (" + 2 * a + ")";
+            }
+            else
+            {
+                roots.one = (-b + (decimal)Math.Sqrt((double)discriminant)) / (2 * a);
+                roots.two = (-b - (decimal)Math.Sqrt((double)discriminant)) / (2 * a);
+            }
+
+            return roots;
+        }
     }
 }

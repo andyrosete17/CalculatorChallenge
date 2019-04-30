@@ -27,6 +27,8 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
             <TextBlock  Name="DisplayBox" Text="{Binding Display, Mode=TwoWay}" Background="White"  Grid.ColumnSpan="6" FontSize="24" TextAlignment="Right"></TextBlock>
@@ -44,8 +46,8 @@
             <Button Name="Button2" Command="{Binding DigitButtonPressCommand}" CommandParameter="2" Grid.Column="1" Grid.Row="4" >2</Button>
             <Button Name="Button3" Command="{Binding DigitButtonPressCommand}" CommandParameter="3" Grid.Column="2" Grid.Row="4" >3</Button>
 
-            <Button Name="Button0" Command="{Binding DigitButtonPressCommand}" CommandParameter="0" Grid.Column="0" Grid.Row="7" >0</Button>
-            <Button Name="ButtonPoint" Command="{Binding DigitButtonPressCommand}" CommandParameter="." Grid.Column="1" Grid.Row="7" >.</Button>
+            <Button Name="Button0" Command="{Binding DigitButtonPressCommand}" CommandParameter="0" Grid.Column="0" Grid.Row="5" >0</Button>
+            <Button Name="ButtonPoint" Command="{Binding DigitButtonPressCommand}" CommandParameter="." Grid.Column="1" Grid.Row="5" Height="41" VerticalAlignment="Top" >.</Button>
 
             <Button Name="ButtonPlusMinus" Command="{Binding DigitButtonPressCommand}" CommandParameter="+/-" Background="DarkGray"  Grid.Column="2" Grid.Row="5" >+/-</Button>
 
@@ -63,14 +65,20 @@
 
             <Button Name="ButtonEqual" Command="{Binding OperationButtonPressCommand}" CommandParameter="=" Background="Darkgray"  Grid.Column="4" Grid.Row="5" Margin="0,0,0,0">=</Button>
             <Button Name="ButtonUndo" Command="{Binding OperationUndoButtonPressCommand}" Background="Darkgray"  Grid.Column="5" Grid.Row="5" Margin="0,0,0,0">Undo</Button>
-            <ListView Name ="listView" ItemsSource="{Binding Path=CalculationHistory}" FontSize="10" FontStyle="Normal" Grid.Column="5" Background="Darkgray" HorizontalAlignment="Left" Height="240" Grid.Row="1" Grid.RowSpan="4" VerticalAlignment="Top" Width="79" ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <ListView Name ="listView" ItemsSource="{Binding Path=CalculationHistory}" FontSize="10" FontStyle="Normal" Grid.Column="5" Background="Darkgray" HorizontalAlignment="Left" Height="144" Grid.Row="1" Grid.RowSpan="4" VerticalAlignment="Top" Width="79" ScrollViewer.VerticalScrollBarVisibility="Visible">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="History" DisplayMemberBinding="{Binding Value}"></GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
-
+            <TextBlock  Name="QuadraticText" Text="Quadratic Calculator (ax^2 + bx + c)" Background="White"  Grid.ColumnSpan="6" Grid.Row="6" FontSize="24" TextAlignment="Center"></TextBlock>
+            <TextBox Name="aParameter" Text="{Binding aParameter, Mode=TwoWay}" HorizontalAlignment="Left" Height="35" Grid.Row="7" Grid.Column="0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Width="79" TextAlignment="Center"/>
+            <TextBox Name="bParameter" Text="{Binding bParameter, Mode=TwoWay}" HorizontalAlignment="Left" Height="35" Grid.Row="7" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Width="79" TextAlignment="Center"/>
+            <TextBox Name="cParameter" Text="{Binding cParameter, Mode=TwoWay}" HorizontalAlignment="Left" Height="35" Grid.Row="7" Grid.Column="2" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Width="79" TextAlignment="Center"/>
+            <Button Name="quadraticCalculate" Command="{Binding OperationQuadraticButtonPressCommand}" Background="Darkgray"  Grid.Column="3" Grid.Row="7" Margin="0,0,0,0">=</Button>
+            <TextBlock  Name="QuadraticTextRoot1" Text="{Binding Root1, Mode=TwoWay}" Background="White" Grid.Column="4" Grid.Row="7" FontSize="24" TextAlignment="Center"></TextBlock>
+            <TextBlock  Name="QuadraticTextRoot2" Text="{Binding Root2, Mode=TwoWay}" Background="White" Grid.Column="5" Grid.Row="7" FontSize="24" TextAlignment="Center"></TextBlock>
         </Grid>
     </DockPanel>
 </Window>

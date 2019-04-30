@@ -109,6 +109,7 @@
     <None Include="Connected Services\CalculationService\CalculatorChallenge.CalculationService.CalculatorOperation.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Properties\DataSources\Calculator.Service.DTOs.Root.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

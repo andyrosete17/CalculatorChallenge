@@ -8,4 +8,14 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="CalculateResultRequest" nillable="true" type="tns:CalculateResultRequest" />
+  <xs:complexType name="Root">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="iOne" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="iTwo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="imaginary" type="xs:boolean" />
+      <xs:element minOccurs="0" name="one" type="xs:decimal" />
+      <xs:element minOccurs="0" name="two" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Root" nillable="true" type="tns:Root" />
 </xs:schema>

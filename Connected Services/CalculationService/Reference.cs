@@ -179,6 +179,12 @@ namespace CalculatorChallenge.CalculationService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICalculationService/RemoveData", ReplyAction="http://tempuri.org/ICalculationService/RemoveDataResponse")]
         System.Threading.Tasks.Task RemoveDataAsync(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICalculationService/CalculateRoots", ReplyAction="http://tempuri.org/ICalculationService/CalculateRootsResponse")]
+        Calculator.Service.DTOs.Root CalculateRoots(decimal a, decimal b, decimal c);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICalculationService/CalculateRoots", ReplyAction="http://tempuri.org/ICalculationService/CalculateRootsResponse")]
+        System.Threading.Tasks.Task<Calculator.Service.DTOs.Root> CalculateRootsAsync(decimal a, decimal b, decimal c);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -246,6 +252,14 @@ namespace CalculatorChallenge.CalculationService {
         
         public System.Threading.Tasks.Task RemoveDataAsync(System.Guid id) {
             return base.Channel.RemoveDataAsync(id);
+        }
+        
+        public Calculator.Service.DTOs.Root CalculateRoots(decimal a, decimal b, decimal c) {
+            return base.Channel.CalculateRoots(a, b, c);
+        }
+        
+        public System.Threading.Tasks.Task<Calculator.Service.DTOs.Root> CalculateRootsAsync(decimal a, decimal b, decimal c) {
+            return base.Channel.CalculateRootsAsync(a, b, c);
         }
     }
 }

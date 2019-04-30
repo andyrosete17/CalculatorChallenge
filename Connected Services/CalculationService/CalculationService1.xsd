@@ -69,4 +69,20 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="CalculateRoots">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="a" type="xs:decimal" />
+        <xs:element minOccurs="0" name="b" type="xs:decimal" />
+        <xs:element minOccurs="0" name="c" type="xs:decimal" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CalculateRootsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Calculator.Service.DTOs" minOccurs="0" name="CalculateRootsResult" nillable="true" type="q8:Root" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>
