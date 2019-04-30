@@ -115,7 +115,6 @@
       <DependentUpon>201904290939201_SetAutomaticGenerationId.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\LocalDataContext.cs" />
     <Compile Include="Repository\CalculatorRepository.cs" />
     <Compile Include="CalculationService.svc.cs">
