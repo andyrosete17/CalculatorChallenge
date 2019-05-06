@@ -7,7 +7,7 @@
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("Calculator")]
-    public class CalculatorOperation : Entity, IEntity
+    public class CalculatorOperation : IEntity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
